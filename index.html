@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>GameVault 🎮 – Steam Games</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* ==== STYLE GENERAL ==== */
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  color:white;
+  background: url('https://images.unsplash.com/photo-1604917869743-1ee86d02d0a8?auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+}
+body::before{
+  content: '';
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.65);
+  z-index:-1;
+}
+header{
+  background:#020617;
+  padding:25px;
+  text-align:center;
+  position:relative;
+}
+header h1{margin:0;color:#38bdf8;}
+header .don-btn{
+  position:absolute;
+  top:20px;
+  right:20px;
+  padding:12px 22px;
+  background:#f59e0b;
+  color:#000;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+}
+header .don-btn:hover{background:#fbbf24;}
+
+main{padding:30px;text-align:center;}
+input{padding:15px;width:70%;max-width:400px;border-radius:8px;border:none;font-size:16px;}
+button{padding:14px 24px;margin:8px;border-radius:8px;border:none;background:#38bdf8;font-size:16px;cursor:pointer;font-weight:bold;}
+button:hover{background:#0ea5e9;}
+
+section{margin-top:40px;background:#020617;padding:20px;border-radius:12px;}
+#games{display:flex;flex-wrap:wrap;justify-content:center;padding:20px;}
+.game{
+  background:#1e1e1e;border-radius:12px;
+  width:240px;margin:12px;padding:12px;
+  transition:transform .2s;
+}
+.game:hover{transform:scale(1.05);}
+.game img{width:100%;border-radius:8px;}
+.highlight{
+  background:#38bdf8;color:#000;
+  padding:6px 14px;border-radius:6px;
+  display:inline-block;font-weight:bold;
+}
+#ad{
+  margin:25px auto;padding:15px;
+  background:#f59e0b;color:#000;
+  width:90%;border-radius:10px;
+  font-weight:bold;cursor:pointer;
+}
+#ad:hover{background:#fbbf24;}
+#premium{display:none;background:#111;padding:30px;border-radius:12px;}
+footer{text-align:center;font-size:14px;opacity:0.7;padding:20px;}
+#contact a{
+  color:#38bdf8;
+  text-decoration:none;
+  font-weight:bold;
+}
+#contact a:hover{
+  text-decoration:underline;
+}
+.premium-game{
+  margin:15px;
+  display:inline-block;
+  text-align:center;
+}
+.premium-game img{
+  width:120px;
+  border-radius:8px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🎮 GameVault</h1>
+<button class="don-btn" onclick="openPay('https://wa.me/2290197695066')">Don 💖</button>
+<p>Plateforme de jeux Steam – Téléchargement légal</p>
+<p><strong>Créé par ABOGOURIN Fayad</strong></p>
+</header>
+
+<main>
+
+<h2>🔎 Rechercher un jeu Steam</h2>
+<input id="gameName" placeholder="Ex: GTA V, CS2, Elden Ring">
+<button onclick="searchSteam()">Rechercher</button>
+
+<section>
+<h2>🔥 Tous les jeux disponibles</h2>
+<div id="games"></div>
+</section>
+
+<div id="ad" onclick="alert('Publicité de démonstration')">
+🎯 Publicité – Offre spéciale pour gamers 🎯
+</div>
+
+<section>
+<h2>💎 Accès Premium</h2>
+<p>Guides exclusifs, astuces, contenus bonus</p>
+<button class="highlight" onclick="showPremium()">Accès Premium 🔒</button>
+</section>
+
+<section id="premium">
+<h3>Premium 🔐</h3>
+<p>
+✔ Guides avancés<br>
+✔ Astuces pro Steam<br>
+✔ Soutien au site
+</p>
+
+<p>💰 Paiement Mobile Money : +229 0197695066 (5€ / mois)</p>
+<p>📲 Envoyez la preuve de paiement sur WhatsApp : <a href="https://wa.me/2290140367282" target="_blank">+229 0140367282</a></p>
+
+<button onclick="unlock()">J’ai payé</button>
+
+<div id="premiumContent" style="display:none;margin-top:20px">
+  <h3>🎉 Premium activé</h3>
+  <p>Merci pour ton soutien ❤️</p>
+  <h4>Jeux Premium :</h4>
+  <div class="premium-game">
+    <img src="https://th.bing.com/th/id/OIP.PWwXEYvRwqQn4pnnQtMH5AHaEK?w=89&h=90&c=1&rs=1&qlt=70&r=0&o=7&dpr=1.3&pid=InlineBlock&rm=3" alt="Hollow Knight Godmaster">
+    <br>
+    <a href="prenium/Hollow_knight_godmaster.rar" download>
+      <button class="highlight">Télécharger Hollow Knight Godmaster</button>
+    </a>
+  </div>
+  <div class="premium-game">
+    <img src="https://th.bing.com/th/id/OIP.PWwXEYvRwqQn4pnnQtMH5AHaEK?w=89&h=90&c=1&rs=1&qlt=70&r=0&o=7&dpr=1.3&pid=InlineBlock&rm=3" alt="Hollow Knight Silksong">
+    <br>
+    <a href="prenium/Hollow_knight_silksong.rar" download>
+      <button class="highlight">Télécharger Hollow Knight Silksong</button>
+    </a>
+  </div>
+
+  <p style="margin-top:20px;color:#fbbf24">
+    Si vous voulez plus de jeux gratuitement, contactez le WhatsApp : <a href="https://wa.me/2290140367282" target="_blank">+229 0140367282</a>. Vous devez payer avant de recevoir n'importe quel jeu vidéo.
+  </p>
+</div>
+
+<button onclick="hidePremium()">Retour</button>
+</section>
+
+<section id="contact">
+<h2>📞 Contact / Assistance</h2>
+<p>WhatsApp pour toute aide : 
+  <strong>
+    <a href="https://wa.me/2290140367282" target="_blank">+229 0140367282</a>
+  </strong>
+</p>
+</section>
+
+<section>
+<h2>👀 Visiteurs</h2>
+<p><span id="visitCount" class="highlight">0</span> visiteurs</p>
+</section>
+
+</main>
+
+<footer>
+<p>© 2026 – GameVault | Non affilié à Valve / Steam</p>
+</footer>
+
+<script>
+// ===== LISTE COMPLETE DES JEUX STEAM =====
+const gamesList=[
+{n:"Counter-Strike 2",i:"https://cdn.cloudflare.steamstatic.com/steam/apps/730/header.jpg",l:"https://store.steampowered.com/app/730"},
+{n:"GTA V",i:"https://cdn.cloudflare.steamstatic.com/steam/apps/271590/header.jpg",l:"https://store.steampowered.com/app/271590"},
+{n:"Elden Ring",i:"https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/header.jpg",l:"https://store.steampowered.com/app/1245620"},
+{n:"Cyberpunk 2077",i:"https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/header.jpg",l:"https://store.steampowered.com/app/1091500"},
+{n:"Red Dead Redemption 2",i:"https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/header.jpg",l:"https://store.steampowered.com/app/1174180"},
+{n:"The Witcher 3",i:"https://cdn.cloudflare.steamstatic.com/steam/apps/292030/header.jpg",l:"https://store.steampowered.com/app/292030"},
+{n:"Baldur's Gate 3",i:"https://cdn.cloudflare.steamstatic.com/steam/apps/1086940/header.jpg",l:"https://store.steampowered.com/app/1086940"},
+{n:"Hades",i:"https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/header.jpg",l:"https://store.steampowered.com/app/1145360"},
+{n:"Call of Duty MW3",i:"https://cdn.cloudflare.steamstatic.com/steam/apps/2519060/header.jpg",l:"https://store.steampowered.com/app/2519060"},
+{n:"FIFA 23",i:"https://cdn.cloudflare.steamstatic.com/steam/apps/1811260/header.jpg",l:"https://store.steampowered.com/app/1811260"},
+{n:"Assassin's Creed Valhalla",i:"https://cdn.cloudflare.steamstatic.com/steam/apps/2208920/header.jpg",l:"https://store.steampowered.com/app/2208920"},
+{n:"Far Cry 6",i:"https://cdn.cloudflare.steamstatic.com/steam/apps/2369390/header.jpg",l:"https://store.steampowered.com/app/2369390"},
+{n:"Resident Evil 4",i:"https://cdn.cloudflare.steamstatic.com/steam/apps/2050650/header.jpg",l:"https://store.steampowered.com/app/2050650"},
+{n:"Forza Horizon 5",i:"https://cdn.cloudflare.steamstatic.com/steam/apps/1551360/header.jpg",l:"https://store.steampowered.com/app/1551360"}
+];
+
+const container=document.getElementById("games");
+gamesList.forEach(g=>{
+container.innerHTML+=`
+<div class="game">
+<h3>${g.n}</h3>
+<img src="${g.i}">
+<a href="${g.l}" target="_blank">
+<button class="highlight">Voir sur Steam</button>
+</a>
+</div>`;
+});
+
+// ===== FONCTIONS =====
+function searchSteam(){
+const v=document.getElementById("gameName").value;
+if(!v)return alert("Entre un nom de jeu");
+window.open("https://store.steampowered.com/search/?term="+encodeURIComponent(v));
+}
+function showPremium(){document.getElementById("premium").style.display="block";}
+function hidePremium(){document.getElementById("premium").style.display="none";}
+function unlock(){document.getElementById("premiumContent").style.display="block";}
+function openPay(u){window.open(u,"_blank");}
+
+// ===== COMPTEUR VISITE UNIQUE =====
+let visits=localStorage.getItem("gameVaultVisits");
+if(!visits){visits=1;localStorage.setItem("gameVaultVisits",1);}
+document.getElementById("visitCount").textContent=visits;
+</script>
+
+</body>
+</html>
