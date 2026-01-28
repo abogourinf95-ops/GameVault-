@@ -2,94 +2,98 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>GameVault 🎮 – Steam Games</title>
+<title>GameVault</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* ==== STYLE GENERAL ==== */
+*{box-sizing:border-box}
+html {scroll-behavior: smooth;}
 body{
   margin:0;
-  font-family:Arial,sans-serif;
-  color:white;
-  background: url('https://images.unsplash.com/photo-1604917869743-1ee86d02d0a8?auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
-  background-size: cover;
-  position: relative;
-}
-body::before{
-  content: '';
-  position: fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background: rgba(0,0,0,0.65);
-  z-index:-1;
+  font-family:Arial, sans-serif;
+  background:#0f172a;
+  color:#e5e7eb;
 }
 header{
   background:#020617;
-  padding:25px;
+  padding:20px;
   text-align:center;
-  position:relative;
 }
-header h1{margin:0;color:#38bdf8;}
-header .don-btn{
-  position:absolute;
-  top:20px;
-  right:20px;
-  padding:12px 22px;
-  background:#f59e0b;
-  color:#000;
-  border:none;
-  border-radius:8px;
-  cursor:pointer;
-  font-weight:bold;
-}
-header .don-btn:hover{background:#fbbf24;}
+header h1{color:#38bdf8;margin:0}
+header p{color:#9ca3af}
 
-main{padding:30px;text-align:center;}
-input{padding:15px;width:70%;max-width:400px;border-radius:8px;border:none;font-size:16px;}
-button{padding:14px 24px;margin:8px;border-radius:8px;border:none;background:#38bdf8;font-size:16px;cursor:pointer;font-weight:bold;}
-button:hover{background:#0ea5e9;}
-
-section{margin-top:40px;background:#020617;padding:20px;border-radius:12px;}
-#games{display:flex;flex-wrap:wrap;justify-content:center;padding:20px;}
-.game{
-  background:#1e1e1e;border-radius:12px;
-  width:240px;margin:12px;padding:12px;
-  transition:transform .2s;
-}
-.game:hover{transform:scale(1.05);}
-.game img{width:100%;border-radius:8px;}
-.highlight{
-  background:#38bdf8;color:#000;
-  padding:6px 14px;border-radius:6px;
-  display:inline-block;font-weight:bold;
-}
-#ad{
-  margin:25px auto;padding:15px;
-  background:#f59e0b;color:#000;
-  width:90%;border-radius:10px;
-  font-weight:bold;cursor:pointer;
-}
-#ad:hover{background:#fbbf24;}
-#premium{display:none;background:#111;padding:30px;border-radius:12px;}
-footer{text-align:center;font-size:14px;opacity:0.7;padding:20px;}
-#contact a{
-  color:#38bdf8;
+nav a{
+  color:#e5e7eb;
+  margin:0 12px;
   text-decoration:none;
   font-weight:bold;
 }
-#contact a:hover{
-  text-decoration:underline;
+nav a:hover{color:#38bdf8}
+
+.container{max-width:1300px;margin:auto;padding:20px}
+
+.search{
+  max-width:400px;
+  margin:20px auto;
 }
-.premium-game{
-  margin:15px;
-  display:inline-block;
+.search input{
+  width:100%;
+  padding:10px;
+  border-radius:6px;
+  border:none;
+}
+
+.games{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+
+.card{
+  background:#020617;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 10px 25px rgba(0,0,0,.6);
+  transition:.3s;
+}
+.card:hover{transform:scale(1.05)}
+
+.card img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+}
+
+.card-content{
   text-align:center;
+  padding:12px;
 }
-.premium-game img{
-  width:120px;
-  border-radius:8px;
+
+.btn{
+  display:inline-block;
+  padding:8px 14px;
+  background:#38bdf8;
+  color:#020617;
+  border-radius:6px;
+  text-decoration:none;
+  font-weight:bold;
+}
+.btn:hover{background:#0ea5e9}
+
+.premium{
+  background:#020617;
+  padding:20px;
+  border-radius:12px;
+  text-align:center;
+  margin-top:30px;
+}
+
+footer{
+  background:#020617;
+  text-align:center;
+  padding:15px;
+  color:#9ca3af;
+  margin-top:40px;
 }
 </style>
 </head>
@@ -98,138 +102,165 @@ footer{text-align:center;font-size:14px;opacity:0.7;padding:20px;}
 
 <header>
 <h1>🎮 GameVault</h1>
-<button class="don-btn" onclick="openPay('https://wa.me/2290197695066')">Don 💖</button>
-<p>Plateforme de jeux Steam – Téléchargement légal</p>
-<p><strong>Créé par ABOGOURIN Fayad</strong></p>
+<p>Accès officiel aux meilleurs jeux PC</p>
+<nav>
+    <a href="#jeux">Jeux</a>
+    <a href="#about">À propos</a>
+    <a href="#premium">Premium</a>
+    <a href="#contact">Contact</a>
+</nav>
 </header>
 
-<main>
+<div class="container">
 
-<h2>🔎 Rechercher un jeu Steam</h2>
-<input id="gameName" placeholder="Ex: GTA V, CS2, Elden Ring">
-<button onclick="searchSteam()">Rechercher</button>
-
-<section>
-<h2>🔥 Tous les jeux disponibles</h2>
-<div id="games"></div>
-</section>
-
-<div id="ad" onclick="alert('Publicité de démonstration')">
-🎯 Publicité – Offre spéciale pour gamers 🎯
+<div class="search">
+<input type="text" id="searchInput" placeholder="🔍 Rechercher un jeu..." onkeyup="filterOrSearch(event)">
 </div>
 
-<section>
-<h2>💎 Accès Premium</h2>
-<p>Guides exclusifs, astuces, contenus bonus</p>
-<button class="highlight" onclick="showPremium()">Accès Premium 🔒</button>
-</section>
+<div class="games" id="gameList">
 
-<section id="premium">
-<h3>Premium 🔐</h3>
+<!-- Minecraft -->
+<div class="card">
+<img src="https://th.bing.com/th/id/OIP.ANbuR7DoBoGy6aj2wMvQrQHaHa?w=178&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Minecraft">
+<div class="card-content">
+<h3>Minecraft</h3>
+<a class="btn" href="https://www.minecraft.net" target="_blank">Site officiel</a>
+</div>
+</div>
+
+<!-- GTA V -->
+<div class="card">
+<img src="https://th.bing.com/th/id/OIP.0P6A52fIOYOJAfr5uKYxhAHaHa?w=175&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="GTA V">
+<div class="card-content">
+<h3>GTA V</h3>
+<a class="btn" href="https://www.rockstargames.com/gta-v" target="_blank">Site officiel</a>
+</div>
+</div>
+
+<!-- FIFA 23 -->
+<div class="card">
+<img src="https://th.bing.com/th/id/OIP.jNa3CNvJ0wIvAl1UYdtLMQHaEK?w=322&h=181&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="FIFA 23">
+<div class="card-content">
+<h3>FIFA 23</h3>
+<a class="btn" href="https://www.ea.com/games/fifa/fifa-23" target="_blank">Site officiel</a>
+</div>
+</div>
+
+<!-- Cyberpunk 2077 -->
+<div class="card">
+<img src="https://th.bing.com/th/id/OIP.NZ53080KQK6_O7wTDRTFxwHaEK?w=266&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Cyberpunk 2077">
+<div class="card-content">
+<h3>Cyberpunk 2077</h3>
+<a class="btn" href="https://www.cyberpunk.net" target="_blank">Site officiel</a>
+</div>
+</div>
+
+<!-- Red Dead Redemption 2 -->
+<div class="card">
+<img src="https://th.bing.com/th/id/OIP.2x4CqJUJGiQ9i4UZilISDQHaEo?w=289&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Red Dead Redemption 2">
+<div class="card-content">
+<h3>Red Dead Redemption 2</h3>
+<a class="btn" href="https://www.rockstargames.com/reddeadredemption2" target="_blank">Site officiel</a>
+</div>
+</div>
+
+<!-- The Witcher 3 -->
+<div class="card">
+<img src="https://th.bing.com/th/id/OIP.f0G0jQB0zlZRftE0hKNJ1AHaEK?w=274&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="The Witcher 3">
+<div class="card-content">
+<h3>The Witcher 3</h3>
+<a class="btn" href="https://thewitcher.com" target="_blank">Site officiel</a>
+</div>
+</div>
+
+<!-- Call of Duty -->
+<div class="card">
+<img src="https://th.bing.com/th/id/OIP.bfD4G188gAJtNgeQyZ2mLwHaD4?w=301&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Call of Duty">
+<div class="card-content">
+<h3>Call of Duty</h3>
+<a class="btn" href="https://www.callofduty.com" target="_blank">Site officiel</a>
+</div>
+</div>
+
+<!-- Fortnite -->
+<div class="card">
+<img src="https://th.bing.com/th/id/OIP.oV7O0eFKepKliYA3aY2O0AHaEK?w=275&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Fortnite">
+<div class="card-content">
+<h3>Fortnite</h3>
+<a class="btn" href="https://www.epicgames.com/fortnite" target="_blank">Epic Games</a>
+</div>
+</div>
+
+<!-- Section À propos -->
+<div class="premium" id="about">
+<h2 class="section-title">À propos de GameVault</h2>
 <p>
-✔ Guides avancés<br>
-✔ Astuces pro Steam<br>
-✔ Soutien au site
+GameVault est un site dédié à la découverte et aux téléchargements officiels
+des meilleurs jeux vidéo. Retrouvez des liens directs vers les sites officiels,
+découvrez les nouveautés et accédez aux avantages Premium pour une expérience complète.
 </p>
-
-<p>💰 Paiement Mobile Money : +229 0197695066 (5€ / mois)</p>
-<p>📲 Envoyez la preuve de paiement sur WhatsApp : <a href="https://wa.me/2290140367282" target="_blank">+229 0140367282</a></p>
-
-<button onclick="unlock()">J’ai payé</button>
-
-<div id="premiumContent" style="display:none;margin-top:20px">
-  <h3>🎉 Premium activé</h3>
-  <p>Merci pour ton soutien ❤️</p>
-  <h4>Jeux Premium :</h4>
-  <div class="premium-game">
-    <img src="https://th.bing.com/th/id/OIP.PWwXEYvRwqQn4pnnQtMH5AHaEK?w=89&h=90&c=1&rs=1&qlt=70&r=0&o=7&dpr=1.3&pid=InlineBlock&rm=3" alt="Hollow Knight Godmaster">
-    <br>
-    <a href="prenium/Hollow_knight_godmaster.rar" download>
-      <button class="highlight">Télécharger Hollow Knight Godmaster</button>
-    </a>
-  </div>
-  <div class="premium-game">
-    <img src="https://th.bing.com/th/id/OIP.PWwXEYvRwqQn4pnnQtMH5AHaEK?w=89&h=90&c=1&rs=1&qlt=70&r=0&o=7&dpr=1.3&pid=InlineBlock&rm=3" alt="Hollow Knight Silksong">
-    <br>
-    <a href="prenium/Hollow_knight_silksong.rar" download>
-      <button class="highlight">Télécharger Hollow Knight Silksong</button>
-    </a>
-  </div>
-
-  <p style="margin-top:20px;color:#fbbf24">
-    Si vous voulez plus de jeux gratuitement, contactez le WhatsApp : <a href="https://wa.me/2290140367282" target="_blank">+229 0140367282</a>. Vous devez payer avant de recevoir n'importe quel jeu vidéo.
-  </p>
+<a class="btn" href="#jeux">Découvrir les jeux</a>
 </div>
 
-<button onclick="hidePremium()">Retour</button>
-</section>
+<!-- Section Premium -->
+<div class="premium" id="premium">
+<h2 class="section-title">Accès Premium</h2>
+<p>Téléchargements rapides, jeux exclusifs, aucun limite.</p>
+<a class="btn" href="https://wa.me/2290140367282?text=Je%20souhaite%20devenir%20Premium" target="_blank">
+WhatsApp Premium
+</a>
+</div>
 
-<section id="contact">
-<h2>📞 Contact / Assistance</h2>
-<p>WhatsApp pour toute aide : 
-  <strong>
-    <a href="https://wa.me/2290140367282" target="_blank">+229 0140367282</a>
-  </strong>
-</p>
-</section>
+<!-- Section Contact WhatsApp avec icône -->
+<div class="premium" id="contact">
+<h2 class="section-title">Contact</h2>
+<p>Contactez-moi sur WhatsApp :</p>
+<a class="btn" href="https://wa.me/2290140367282?text=Bonjour%2C%20je%20vous%20contacte%20depuis%20GameVault" target="_blank">
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#020617" viewBox="0 0 24 24" style="vertical-align:middle;margin-right:6px">
+  <path d="M20.52 3.48A11.942 11.942 0 0012 0C5.373 0 0 5.373 0 12c0 2.11.547 4.082 1.5 5.835L0 24l6.21-1.586A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12 0-3.2-1.25-6.204-3.48-8.52zM12 22a10.04 10.04 0 01-5.21-1.46l-.37-.22-3.69.94.99-3.59-.24-.38A9.963 9.963 0 012 12c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10zm5.28-7.69c-.26-.13-1.54-.76-1.78-.85-.24-.09-.42-.13-.6.13-.18.26-.7.85-.86 1.03-.16.18-.32.2-.58.07-.26-.13-1.1-.41-2.1-1.3-.78-.7-1.3-1.57-1.46-1.83-.16-.26-.02-.4.12-.53.12-.12.26-.32.38-.48.12-.16.16-.26.26-.43.09-.16.04-.3-.02-.43-.06-.13-.6-1.44-.82-1.97-.22-.52-.44-.45-.6-.46l-.51-.01c-.17 0-.44.06-.67.3s-.88.86-.88 2.1c0 1.23.9 2.42 1.02 2.58.13.16 1.76 2.7 4.27 3.78.6.26 1.06.42 1.42.54.6.2 1.14.17 1.57.1.48-.08 1.54-.63 1.76-1.23.22-.6.22-1.12.16-1.23-.06-.12-.22-.17-.48-.3z"/>
+</svg>
+WhatsApp
+</a>
+</div>
 
-<section>
-<h2>👀 Visiteurs</h2>
-<p><span id="visitCount" class="highlight">0</span> visiteurs</p>
-</section>
-
-</main>
+</div>
 
 <footer>
-<p>© 2026 – GameVault | Non affilié à Valve / Steam</p>
+© 2026 GameVault — Liens officiels uniquement
 </footer>
 
 <script>
-// ===== LISTE COMPLETE DES JEUX STEAM =====
-const gamesList=[
-{n:"Counter-Strike 2",i:"https://cdn.cloudflare.steamstatic.com/steam/apps/730/header.jpg",l:"https://store.steampowered.com/app/730"},
-{n:"GTA V",i:"https://cdn.cloudflare.steamstatic.com/steam/apps/271590/header.jpg",l:"https://store.steampowered.com/app/271590"},
-{n:"Elden Ring",i:"https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/header.jpg",l:"https://store.steampowered.com/app/1245620"},
-{n:"Cyberpunk 2077",i:"https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/header.jpg",l:"https://store.steampowered.com/app/1091500"},
-{n:"Red Dead Redemption 2",i:"https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/header.jpg",l:"https://store.steampowered.com/app/1174180"},
-{n:"The Witcher 3",i:"https://cdn.cloudflare.steamstatic.com/steam/apps/292030/header.jpg",l:"https://store.steampowered.com/app/292030"},
-{n:"Baldur's Gate 3",i:"https://cdn.cloudflare.steamstatic.com/steam/apps/1086940/header.jpg",l:"https://store.steampowered.com/app/1086940"},
-{n:"Hades",i:"https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/header.jpg",l:"https://store.steampowered.com/app/1145360"},
-{n:"Call of Duty MW3",i:"https://cdn.cloudflare.steamstatic.com/steam/apps/2519060/header.jpg",l:"https://store.steampowered.com/app/2519060"},
-{n:"FIFA 23",i:"https://cdn.cloudflare.steamstatic.com/steam/apps/1811260/header.jpg",l:"https://store.steampowered.com/app/1811260"},
-{n:"Assassin's Creed Valhalla",i:"https://cdn.cloudflare.steamstatic.com/steam/apps/2208920/header.jpg",l:"https://store.steampowered.com/app/2208920"},
-{n:"Far Cry 6",i:"https://cdn.cloudflare.steamstatic.com/steam/apps/2369390/header.jpg",l:"https://store.steampowered.com/app/2369390"},
-{n:"Resident Evil 4",i:"https://cdn.cloudflare.steamstatic.com/steam/apps/2050650/header.jpg",l:"https://store.steampowered.com/app/2050650"},
-{n:"Forza Horizon 5",i:"https://cdn.cloudflare.steamstatic.com/steam/apps/1551360/header.jpg",l:"https://store.steampowered.com/app/1551360"}
-];
+// Filtrage et redirection Enter
+const games = {
+  "minecraft": "https://www.minecraft.net",
+  "gta v": "https://www.rockstargames.com/gta-v",
+  "fifa 23": "https://www.ea.com/games/fifa/fifa-23",
+  "cyberpunk 2077": "https://www.cyberpunk.net",
+  "red dead redemption 2": "https://www.rockstargames.com/reddeadredemption2",
+  "the witcher 3": "https://thewitcher.com",
+  "call of duty": "https://www.callofduty.com",
+  "fortnite": "https://www.epicgames.com/fortnite"
+};
 
-const container=document.getElementById("games");
-gamesList.forEach(g=>{
-container.innerHTML+=`
-<div class="game">
-<h3>${g.n}</h3>
-<img src="${g.i}">
-<a href="${g.l}" target="_blank">
-<button class="highlight">Voir sur Steam</button>
-</a>
-</div>`;
-});
+function filterOrSearch(event){
+  let input = document.getElementById("searchInput").value.toLowerCase();
+  const cards = document.querySelectorAll(".card");
 
-// ===== FONCTIONS =====
-function searchSteam(){
-const v=document.getElementById("gameName").value;
-if(!v)return alert("Entre un nom de jeu");
-window.open("https://store.steampowered.com/search/?term="+encodeURIComponent(v));
+  // Filtrer les cartes visibles
+  cards.forEach(card=>{
+    let title = card.querySelector("h3").innerText.toLowerCase();
+    card.style.display = title.includes(input) ? "block" : "none";
+  });
+
+  // Appui sur Enter
+  if(event.key === "Enter"){
+    if(input in games){
+      window.open(games[input], "_blank");
+    } else {
+      window.open("https://www.google.com/search?q=" + encodeURIComponent(input), "_blank");
+    }
+  }
 }
-function showPremium(){document.getElementById("premium").style.display="block";}
-function hidePremium(){document.getElementById("premium").style.display="none";}
-function unlock(){document.getElementById("premiumContent").style.display="block";}
-function openPay(u){window.open(u,"_blank");}
-
-// ===== COMPTEUR VISITE UNIQUE =====
-let visits=localStorage.getItem("gameVaultVisits");
-if(!visits){visits=1;localStorage.setItem("gameVaultVisits",1);}
-document.getElementById("visitCount").textContent=visits;
 </script>
 
 </body>
