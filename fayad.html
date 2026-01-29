@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>GameVault – Jeux Vidéo Officiels</title>
+<meta name="description" content="GameVault est une plateforme pour découvrir des jeux vidéo populaires et accéder aux sites officiels.">
+<meta name="keywords" content="jeux vidéo, GameVault, GTA 5, FIFA 23, Minecraft, Cyberpunk 2077">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#0f172a;
+  color:#e5e7eb;
+}
+
+header{
+  background:#020617;
+  padding:25px;
+  text-align:center;
+}
+
+header h1{
+  color:#38bdf8;
+  margin:0;
+}
+
+nav a{
+  color:#e5e7eb;
+  margin:0 10px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+nav a:hover{ color:#38bdf8; }
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+}
+
+input{
+  width:100%;
+  padding:12px;
+  border-radius:8px;
+  border:none;
+  margin-bottom:20px;
+  font-size:16px;
+}
+
+.games{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+
+.card{
+  background:#020617;
+  border-radius:12px;
+  overflow:hidden;
+}
+
+.card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+}
+
+.card-content{
+  padding:15px;
+}
+
+.btn{
+  display:inline-block;
+  margin-top:10px;
+  padding:10px 14px;
+  background:#38bdf8;
+  color:#020617;
+  text-decoration:none;
+  border-radius:6px;
+  font-weight:bold;
+}
+
+.btn:hover{ background:#0ea5e9; }
+
+.box{
+  background:#020617;
+  padding:20px;
+  border-radius:12px;
+  margin-top:30px;
+  text-align:center;
+}
+
+footer{
+  background:#020617;
+  padding:15px;
+  text-align:center;
+  margin-top:40px;
+  color:#9ca3af;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🎮 GameVault</h1>
+  <p>Découvre les meilleurs jeux vidéo officiels</p>
+  <nav>
+    <a href="#jeux">Jeux</a>
+    <a href="#role">Rôle</a>
+    <a href="#premium">Premium</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<div class="container">
+
+<input id="search" placeholder="🔍 Rechercher un jeu puis appuyer sur Entrée">
+
+<h2 id="jeux">Jeux disponibles</h2>
+
+<div class="games" id="gameList">
+
+<div class="card" data-name="Minecraft">
+<img src="https://th.bing.com/th/id/OIP.ANbuR7DoBoGy6aj2wMvQrQHaHa">
+<div class="card-content">
+<h3>Minecraft</h3>
+<a class="btn" href="https://www.minecraft.net" target="_blank">Site officiel</a>
+</div>
+</div>
+
+<div class="card" data-name="GTA 5">
+<img src="https://th.bing.com/th/id/OIP.0P6A52fIOYOJAfr5uKYxhAHaHa">
+<div class="card-content">
+<h3>GTA V</h3>
+<a class="btn" href="https://www.rockstargames.com/gta-v" target="_blank">Site officiel</a>
+</div>
+</div>
+
+<div class="card" data-name="FIFA 23">
+<img src="https://th.bing.com/th/id/OIP.jNa3CNvJ0wIvAl1UYdtLMQHaEK">
+<div class="card-content">
+<h3>FIFA 23</h3>
+<a class="btn" href="https://www.ea.com/games/fifa/fifa-23" target="_blank">Site officiel</a>
+</div>
+</div>
+
+<div class="card" data-name="Cyberpunk 2077">
+<img src="https://th.bing.com/th/id/OIP.NZ53080KQK6_O7wTDRTFxwHaEK">
+<div class="card-content">
+<h3>Cyberpunk 2077</h3>
+<a class="btn" href="https://www.cyberpunk.net" target="_blank">Site officiel</a>
+</div>
+</div>
+
+<div class="card" data-name="Red Dead Redemption 2">
+<img src="https://th.bing.com/th/id/OIP.2x4CqJUJGiQ9i4UZilISDQHaEo">
+<div class="card-content">
+<h3>Red Dead Redemption 2</h3>
+<a class="btn" href="https://www.rockstargames.com/reddeadredemption2" target="_blank">Site officiel</a>
+</div>
+</div>
+
+<div class="card" data-name="The Witcher 3">
+<img src="https://th.bing.com/th/id/OIP.f0G0jQB0zlZRftE0hKNJ1AHaEK">
+<div class="card-content">
+<h3>The Witcher 3</h3>
+<a class="btn" href="https://thewitcher.com" target="_blank">Site officiel</a>
+</div>
+</div>
+
+<div class="card" data-name="Call of Duty">
+<img src="https://th.bing.com/th/id/OIP.bfD4G188gAJtNgeQyZ2mLwHaD4">
+<div class="card-content">
+<h3>Call of Duty</h3>
+<a class="btn" href="https://www.callofduty.com" target="_blank">Site officiel</a>
+</div>
+</div>
+
+<div class="card" data-name="Fortnite">
+<img src="https://th.bing.com/th/id/OIP.oV7O0eFKepKliYA3aY2O0AHaEK">
+<div class="card-content">
+<h3>Fortnite</h3>
+<a class="btn" href="https://www.epicgames.com/fortnite" target="_blank">Site officiel</a>
+</div>
+</div>
+
+</div>
+
+<div class="box" id="role">
+<h2>🎯 Rôle du site</h2>
+<p>GameVault aide les joueurs à découvrir des jeux populaires et à accéder uniquement aux sites officiels et fiables.</p>
+</div>
+
+<div class="box" id="premium">
+<h2>💎 Accès Premium</h2>
+<p>Aide personnalisée, conseils, assistance installation.</p>
+<a class="btn" href="https://wa.me/2290140367282" target="_blank">WhatsApp Premium</a>
+</div>
+
+<div class="box" id="contact">
+<h2>📞 Contact</h2>
+<a class="btn" href="https://wa.me/2290140367282" target="_blank">Me contacter sur WhatsApp</a>
+</div>
+
+</div>
+
+<footer>
+© 2026 GameVault – Tous droits réservés
+</footer>
+
+<script>
+const search = document.getElementById("search");
+const cards = document.querySelectorAll(".card");
+
+search.addEventListener("keyup", function(e){
+  const value = search.value.toLowerCase();
+  cards.forEach(card=>{
+    card.style.display = card.dataset.name.toLowerCase().includes(value) ? "block" : "none";
+  });
+
+  if(e.key === "Enter"){
+    window.open("https://www.google.com/search?q=" + value + " jeu officiel", "_blank");
+  }
+});
+</script>
+
+</body>
+</html>
